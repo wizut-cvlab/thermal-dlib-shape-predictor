@@ -1,12 +1,34 @@
 import cv2
-import os.path
-from compare_files import compare_files
+import os
+import config
+from scripts.compare_files import compare_files
 
-folder = "C:\\Users\\asmolinski\\Zachodniopomorski Uniwersytet Technologiczny w Szczecinie\\Paweł Forczmański - database\\#004\\warp\\"
-thermal_img = '#000_ImgFLIR2'
-visual_img = '#000_ImgCANON2'
-type = ".PNG"
-
-#print(os.path.isfile(folder+thermal_img+type))
-
-compare_files(cv2.imread(thermal_img+type,cv2.IMREAD_GRAYSCALE), cv2.imread(visual_img+type,cv2.IMREAD_GRAYSCALE))
+# For each Folder in ./images
+for subFolderName in os.listdir(config.image_path):
+    # For each Image in subFolder
+    for imageFile in os.listdir(config.image_path + subFolderName):
+        # If Thermal image
+        if imageFile.find(config.thermal_image_suffix) > -1:
+            imageFileName = imageFile[0:4]
+            thermalImagePath = (
+                config.image_path
+                + subFolderName
+                + "\\"
+                + imageFileName
+                + config.thermal_image_suffix
+                + config.image_extention
+            )
+            visualImagePath = (
+                config.image_path
+                + subFolderName
+                + "\\"
+                + imageFileName
+                + config.visual_image_suffix
+                + config.image_extention
+            )
+            print(
+                compare_files(
+                    cv2.imread(thermalImagePath, cv2.IMREAD_GRAYSCALE),
+                    cv2.imread(visualImagePath, cv2.IMREAD_GRAYSCALE),
+                )
+            )
