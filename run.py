@@ -27,8 +27,10 @@ for subFolderName in os.listdir(config.image_path):
                 + config.image_extention
             )
             print(
+                subFolderName,
+                imageFileName,
                 compare_files(
                     cv2.imread(thermalImagePath, cv2.IMREAD_GRAYSCALE),
                     cv2.imread(visualImagePath, cv2.IMREAD_GRAYSCALE),
-                )
+                ),
             )

@@ -8,3 +8,5 @@ thermal_cascade_path = "cascades\\cascade3.xml"
 
 visual_cascade_path = "cascades\\cascade2.xml"
 visual_predictor_path = "predictors\\shape_predictor_68_face_landmarks.dat"
+
+detection_error_text = "No face detection"

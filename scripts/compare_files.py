@@ -1,5 +1,4 @@
 import config
-from imutils import face_utils
 from scripts.draw_shape import draw_shape
 from math import sqrt
 
@@ -12,9 +11,8 @@ def compare_files(thermal_image, visible_image):
     visual_shape = draw_shape(
         visible_image, config.visual_cascade_path, config.visual_predictor_path
     )
-    # convert coordinates to np-array
-    thermal_shape = face_utils.shape_to_np(thermal_shape)
-    visual_shape = face_utils.shape_to_np(visual_shape)
+    if thermal_shape == [] or visual_shape == []:
+        return [config.detection_error_text]
 
     # Calculate distances between all 68 points
     distanceSum = 0

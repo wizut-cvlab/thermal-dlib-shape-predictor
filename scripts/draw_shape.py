@@ -1,6 +1,7 @@
 import config
 import cv2
 import dlib
+from imutils import face_utils
 
 
 def draw_shape(img, cascade, predictor, show=False):
@@ -10,6 +11,9 @@ def draw_shape(img, cascade, predictor, show=False):
 
     # ===========automatic face mark
     initBB = cascade_face.detectMultiScale(img, 1.05, 1, minSize=(100, 100))
+    if len(initBB) < 1:
+        return []
+
     box = tuple(initBB[0])
     # ===========manual face mark
     # box = cv2.selectROI("Mark face", img, fromCenter=False, showCrosshair=True)
@@ -33,4 +37,4 @@ def draw_shape(img, cascade, predictor, show=False):
         win.set_image(img)
         dlib.hit_enter_to_continue()
 
-    return shape
+    return face_utils.shape_to_np(shape)
