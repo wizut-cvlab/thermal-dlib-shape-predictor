@@ -42,8 +42,20 @@ img,          - image in grayscales to detect and predict face shape
 cascade,      - xml with Haar like feature cascade detector
 predictor,    - trained dlib shape predictor
 show          - flag, toggle display image in window (default set to false)
+manualMarking - flag, allows to Manual marking face (instead using Haar cascade)(default set to false)
+box           - Coordinates of detected face (from different visual spectrum or file) (default set to None)
 ```
-Function return `shape` object as numpy array of 68 facial feature points, or empty array, when there is no face detection.
+Function return `shape` object as numpy array of 68 facial feature points, and `box` array contains coordinates of detected face, or empty array, when there is no face detection.
+
+There is 3 results file:
+- `results-manual.txt` contains results of manula face marking on Thermal images,
+- `results-thermal.txt` contains results of cascade of thermal faces,
+- `results-visual.txt` contains results, when for prediction thermal shape we use face cascade generated on visual image.
+
+`podsumowanie.xlsx` is additional Excel file with summary results and polish labels.
 
 ### `scripts/compare_files.py`
 For pair of thermal and visual images, function `compare_files` calculates distances (in pixels) between shapes predicted in `draw_shape` function.
+
+### `scripts/face_detect.py`
+Legacy script. Allow to generate detection video file.

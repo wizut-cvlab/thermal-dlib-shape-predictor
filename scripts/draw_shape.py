@@ -4,19 +4,21 @@ import dlib
 from imutils import face_utils
 
 
-def draw_shape(img, cascade, predictor, show=False):
+def draw_shape(img, cascade, predictor, show=False, manualMarking=False, box=None):
 
-    predictor = dlib.shape_predictor(predictor)
-    cascade_face = cv2.CascadeClassifier(cascade)
+    # ===========face mark from other source
+    if box == None:
+        # ===========automatic face mark
+        if manualMarking == False:
+            initBB = cascade.detectMultiScale(img, 1.05, 1, 0, (75, 75))
+            if len(initBB) < 1:
+                return [[], None]
 
-    # ===========automatic face mark
-    initBB = cascade_face.detectMultiScale(img, 1.05, 1, minSize=(100, 100))
-    if len(initBB) < 1:
-        return []
-
-    box = tuple(initBB[0])
-    # ===========manual face mark
-    # box = cv2.selectROI("Mark face", img, fromCenter=False, showCrosshair=True)
+            box = tuple(initBB[0])
+        # ===========manual face mark
+        else:
+            box = cv2.selectROI("Mark face", img, fromCenter=False, showCrosshair=True)
+            print(box)
 
     shape = predictor(
         img,
@@ -36,5 +38,6 @@ def draw_shape(img, cascade, predictor, show=False):
         win.add_overlay(shape)
         win.set_image(img)
         dlib.hit_enter_to_continue()
+        cv2.destroyAllWindows()
 
-    return face_utils.shape_to_np(shape)
+    return [face_utils.shape_to_np(shape), box]

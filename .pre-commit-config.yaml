@@ -5,11 +5,6 @@ repos:
       - id: check-case-conflict
         name: '(files) -- check-case-conflict'
 
-      - id: check-added-large-files
-        name: '(files) -- check-added-large-files'
-        args:
-          - '--maxkb=20480'
-
       - id: check-executables-have-shebangs
         name: '(code) -- check-executables-have-shebangs'
         types:

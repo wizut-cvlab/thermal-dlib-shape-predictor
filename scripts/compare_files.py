@@ -5,11 +5,14 @@ from math import sqrt
 
 def compare_files(thermal_image, visible_image):
 
-    thermal_shape = draw_shape(
-        thermal_image, config.thermal_cascade_path, config.thermal_predictor_path
-    )
-    visual_shape = draw_shape(
+    [visual_shape, box] = draw_shape(
         visible_image, config.visual_cascade_path, config.visual_predictor_path
+    )
+    [thermal_shape, box] = draw_shape(
+        thermal_image,
+        config.thermal_cascade_path,
+        config.thermal_predictor_path,
+        box=box,
     )
     if thermal_shape == [] or visual_shape == []:
         return [config.detection_error_text]
