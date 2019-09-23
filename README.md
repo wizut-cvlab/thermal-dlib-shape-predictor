@@ -43,6 +43,8 @@ There is 4 results file:
 
 `podsumowanie.xlsx` is additional Excel file with summary results and polish labels.
 
+In `results` folder, there is `manual-boxes.txt` file, where listed manual face marking box coordinates.
+
 ## Inside scirpts
 
 ### `scripts/draw_shape.py`
