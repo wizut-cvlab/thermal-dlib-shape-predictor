@@ -22,6 +22,8 @@ py .\run.py
 ## Images dataset
 Inside folder `/images` we assume exist several folders for different models. On each folder may exist various pair images - Thermal and RGB, in the same size. The name for each images consist of 4-letter image identiefier, and suffix indicating image type.
 
+All image datasets is located into `images.7z` archive.
+
 ## Results
 The scripts for each image Pari return following summary:
 ```
@@ -32,6 +34,13 @@ It means, in folder `#004`, comparing images `#003`, face shape prediction has:
 -`0.0` minimum distance,
 -`13.0` maximum distance,
 between two corresponding shape points. Distance is expressed in pixels.
+
+There is 3 results file:
+- `results-manual.txt` contains results of manula face marking on Thermal images,
+- `results-thermal.txt` contains results of cascade of thermal faces,
+- `results-visual.txt` contains results, when for prediction thermal shape we use face cascade generated on visual image.
+
+`podsumowanie.xlsx` is additional Excel file with summary results and polish labels.
 
 ## Inside scirpts
 
@@ -46,13 +55,6 @@ manualMarking - flag, allows to Manual marking face (instead using Haar cascade)
 box           - Coordinates of detected face (from different visual spectrum or file) (default set to None)
 ```
 Function return `shape` object as numpy array of 68 facial feature points, and `box` array contains coordinates of detected face, or empty array, when there is no face detection.
-
-There is 3 results file:
-- `results-manual.txt` contains results of manula face marking on Thermal images,
-- `results-thermal.txt` contains results of cascade of thermal faces,
-- `results-visual.txt` contains results, when for prediction thermal shape we use face cascade generated on visual image.
-
-`podsumowanie.xlsx` is additional Excel file with summary results and polish labels.
 
 ### `scripts/compare_files.py`
 For pair of thermal and visual images, function `compare_files` calculates distances (in pixels) between shapes predicted in `draw_shape` function.
