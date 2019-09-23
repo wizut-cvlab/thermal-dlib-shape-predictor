@@ -35,10 +35,11 @@ It means, in folder `#004`, comparing images `#003`, face shape prediction has:
 -`13.0` maximum distance,
 between two corresponding shape points. Distance is expressed in pixels.
 
-There is 3 results file:
+There is 4 results file:
 - `results-manual.txt` contains results of manula face marking on Thermal images,
 - `results-thermal.txt` contains results of cascade of thermal faces,
 - `results-visual.txt` contains results, when for prediction thermal shape we use face cascade generated on visual image.
+- `results-pointsDistances.txt` contains calculated distances, for every 68point from all images
 
 `podsumowanie.xlsx` is additional Excel file with summary results and polish labels.
 

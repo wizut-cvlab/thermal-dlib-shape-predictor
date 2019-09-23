@@ -26,11 +26,8 @@ for subFolderName in os.listdir(config.image_path):
                 + config.visual_image_suffix
                 + config.image_extention
             )
-            print(
-                subFolderName,
-                imageFileName,
-                compare_files(
-                    cv2.imread(thermalImagePath, cv2.IMREAD_GRAYSCALE),
-                    cv2.imread(visualImagePath, cv2.IMREAD_GRAYSCALE),
-                ),
+            [summary, distances] = compare_files(
+                cv2.imread(thermalImagePath, cv2.IMREAD_GRAYSCALE),
+                cv2.imread(visualImagePath, cv2.IMREAD_GRAYSCALE),
             )
+            print(subFolderName, imageFileName, summary)
