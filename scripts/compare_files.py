@@ -34,8 +34,8 @@ def compare_files(thermal_image, visible_image):
             minimalDistance = distanceBetweenPoints
 
     outerEyeCornersDistance = distanceBetweenPoints = sqrt(
-        (thermal_shape[45][0] - thermal_shape[36][0]) ** 2
-        + (thermal_shape[45][1] - thermal_shape[36][1]) ** 2
+        (visual_shape[45][0] - visual_shape[36][0]) ** 2
+        + (visual_shape[45][1] - visual_shape[36][1]) ** 2
     )
 
     boxDiagonal = sqrt((box[2]) ** 2 + (box[3]) ** 2)

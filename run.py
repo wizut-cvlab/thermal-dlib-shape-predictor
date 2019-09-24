@@ -30,4 +30,4 @@ for subFolderName in os.listdir(config.image_path):
                 cv2.imread(thermalImagePath, cv2.IMREAD_GRAYSCALE),
                 cv2.imread(visualImagePath, cv2.IMREAD_GRAYSCALE),
             )
-            print(subFolderName, imageFileName, summary)
+            print(subFolderName, imageFileName, normalizationParams)
