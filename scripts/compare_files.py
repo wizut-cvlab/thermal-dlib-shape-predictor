@@ -15,7 +15,7 @@ def compare_files(thermal_image, visible_image):
         box=box,
     )
     if thermal_shape == [] or visual_shape == []:
-        return [[config.detection_error_text], []]
+        return [[config.detection_error_text], [], []]
 
     # Calculate distances between all 68 points
     distanceSum = 0
@@ -33,4 +33,15 @@ def compare_files(thermal_image, visible_image):
         if minimalDistance > distanceBetweenPoints:
             minimalDistance = distanceBetweenPoints
 
-    return [[distanceSum / (i + 1), minimalDistance, maximalDistance], pointsDistances]
+    outerEyeCornersDistance = distanceBetweenPoints = sqrt(
+        (thermal_shape[45][0] - thermal_shape[36][0]) ** 2
+        + (thermal_shape[45][1] - thermal_shape[36][1]) ** 2
+    )
+
+    boxDiagonal = sqrt((box[2]) ** 2 + (box[3]) ** 2)
+
+    return [
+        [distanceSum / (i + 1), minimalDistance, maximalDistance],
+        pointsDistances,
+        [outerEyeCornersDistance, boxDiagonal],
+    ]

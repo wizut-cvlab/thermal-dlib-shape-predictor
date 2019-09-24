@@ -26,7 +26,7 @@ for subFolderName in os.listdir(config.image_path):
                 + config.visual_image_suffix
                 + config.image_extention
             )
-            [summary, distances] = compare_files(
+            [summary, distances, normalizationParams] = compare_files(
                 cv2.imread(thermalImagePath, cv2.IMREAD_GRAYSCALE),
                 cv2.imread(visualImagePath, cv2.IMREAD_GRAYSCALE),
             )

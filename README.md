@@ -40,6 +40,7 @@ There is 4 results file:
 - `results-thermal.txt` contains results of cascade of thermal faces,
 - `results-visual.txt` contains results, when for prediction thermal shape we use face cascade generated on visual image.
 - `results-pointsDistances.txt` contains calculated distances, for every 68point from all images
+- `results-normalizationParams.txt` contains calculated distances used to normalization data
 
 `podsumowanie.xlsx` is additional Excel file with summary results and polish labels.
 
@@ -58,6 +59,7 @@ manualMarking - flag, allows to Manual marking face (instead using Haar cascade)
 box           - Coordinates of detected face (from different visual spectrum or file) (default set to None)
 ```
 Function return `shape` object as numpy array of 68 facial feature points, and `box` array contains coordinates of detected face, or empty array, when there is no face detection.
+`normalizationParams` returns 2 values, distances between the outer eye corners (points 36 and 45) and diagonal of the bounding box.
 
 ### `scripts/compare_files.py`
 For pair of thermal and visual images, function `compare_files` calculates distances (in pixels) between shapes predicted in `draw_shape` function.
