@@ -22,7 +22,11 @@ py .\run.py
 ## Images dataset
 Inside folder `/images` we assume exist several folders for different models. On each folder may exist various pair images - Thermal and RGB, in the same size. The name for each images consist of 4-letter image identiefier, and suffix indicating image type.
 
-All image datasets is located into `images.7z` archive.
+All image datasets is located into `images.7z` archive. The archive is located on: https://cvlab.zut.edu.pl/thermal-dlib-shape-predictor/images.7z
+
+## Predictors
+Due to the large size of the files, please download and unzip predictors in application root folder:
+https://cvlab.zut.edu.pl/thermal-dlib-shape-predictor/predictors.7z
 
 ## Results
 The scripts for each image Pari return following summary:
